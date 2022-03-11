@@ -29,6 +29,7 @@
 #include "berry_powder.h"
 #include "pokemon_jump.h"
 #include "event_scripts.h"
+#include "constants/map_groups.h"
 
 // this file's functions
 static void ResetMiniGamesResults(void);
@@ -149,6 +150,8 @@ void NewGameInitData(void)
     ScriptContext2_RunNewScript(EventScript_ResetAllMapFlags);
     StringCopy(gSaveBlock1Ptr->rivalName, rivalName);
     ResetTrainerTowerResults();
+    memset(gSaveBlock2Ptr->dexNavSearchLevels, 0, sizeof(gSaveBlock2Ptr->dexNavSearchLevels));
+    gSaveBlock2Ptr->dexNavChain = 0;
 }
 
 static void ResetMiniGamesResults(void)

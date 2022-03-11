@@ -5,8 +5,8 @@
 
 struct TilesPal
 {
-    u32* tiles;
-    u16* pal;
+    const u8 *tiles;
+    const u16 *pal;
 };
 
 void rbox_fill_rectangle(u8 windowId);
@@ -23,5 +23,7 @@ void TextWindow_LoadTilesStdFrame1(u8 windowId, u16 destOffset);
 void sub_814FE6C(u8 windowId, u16 destOffset, u8 palIdx);
 void sub_814FEEC(u8 windowId, u16 destOffset, u8 palIdx);
 void sub_814FF6C(u8 windowId, u16 destOffset);
+
+void LoadDexNavWindowGfx(u8 windowId, u16 destOffset, u8 palOffset);
 
 #endif // GUARD_TEXT_WINDOW_H

@@ -93,6 +93,10 @@ void TextWindow_SetUserSelectedFrame(u8 windowId, u16 destOffset, u8 palIdx)
     LoadWindowGfx(windowId, gSaveBlock2Ptr->optionsWindowFrameType, destOffset, palIdx);
 }
 
+const u8 gTextWindowFrame1_Gfx[] = INCBIN_U8("graphics/text_window/1.4bpp");
+static const u16 sTextWindowDexnavFrame[] = INCBIN_U16("graphics/text_window/dexnav_pal.gbapal");
+static const struct TilesPal sDexnavWindowFrame = {gTextWindowFrame1_Gfx, sTextWindowDexnavFrame};
+
 void DrawTextBorderOuter(u8 windowId, u16 tileNum, u8 palNum)
 {
     u8 bgLayer = GetWindowAttribute(windowId, WINDOW_BG);
@@ -163,4 +167,10 @@ const u16 *stdpal_get(u8 id)
     }
 
     return (const u16 *)(gUnknown_8471DEC) + id;
+}
+
+void LoadDexNavWindowGfx(u8 windowId, u16 destOffset, u8 palOffset)
+{
+    LoadBgTiles(GetWindowAttribute(windowId, WINDOW_BG), sDexnavWindowFrame.tiles, 0x120, destOffset);
+    LoadPalette(sDexnavWindowFrame.pal, palOffset, 32);
 }

@@ -814,7 +814,7 @@ u32 FldEff_Unknown19(void)
         sprite->oam.priority = gFieldEffectArguments[3];
         sprite->data[0] = FLDEFF_UNKNOWN_19;
     }
-    return 0;
+    return spriteId;
 }
 
 u32 FldEff_Unknown20(void)
@@ -831,7 +831,7 @@ u32 FldEff_Unknown20(void)
         sprite->oam.priority = gFieldEffectArguments[3];
         sprite->data[0] = FLDEFF_UNKNOWN_20;
     }
-    return 0;
+    return spriteId;
 }
 
 u32 FldEff_Unknown21(void)
@@ -848,7 +848,7 @@ u32 FldEff_Unknown21(void)
         sprite->oam.priority = gFieldEffectArguments[3];
         sprite->data[0] = FLDEFF_UNKNOWN_21;
     }
-    return 0;
+    return spriteId;
 }
 
 u32 FldEff_Unknown22(void)
@@ -865,7 +865,7 @@ u32 FldEff_Unknown22(void)
         sprite->oam.priority = gFieldEffectArguments[3];
         sprite->data[0] = FLDEFF_UNKNOWN_22;
     }
-    return 0;
+    return spriteId;
 }
 
 void StartAshFieldEffect(s16 x, s16 y, u16 metatileId, s16 d)
@@ -1205,7 +1205,7 @@ void UpdateBubblesFieldEffect(struct Sprite * sprite)
 
 u32 FldEff_BerryTreeGrowthSparkle(void)
 {
-    /*u8 spriteId;
+    u8 spriteId;
     struct Sprite * sprite;
 
     SetSpritePosToOffsetMapCoords((s16 *)&gFieldEffectArguments[0], (s16 *)&gFieldEffectArguments[1], 8, 4);
@@ -1217,8 +1217,8 @@ u32 FldEff_BerryTreeGrowthSparkle(void)
         sprite->oam.priority = gFieldEffectArguments[3];
         sprite->oam.paletteNum = 5;
         sprite->data[0] = FLDEFF_BERRY_TREE_GROWTH_SPARKLE;
-    }*/
-    return 0;
+    }
+    return spriteId;
 }
 
 u32 ShowTreeDisguiseFieldEffect(void)
@@ -1335,7 +1335,7 @@ u32 FldEff_Sparkle(void)
         gSprites[spriteId].oam.priority = gFieldEffectArguments[2];
         gSprites[spriteId].coordOffsetEnabled = TRUE;
     }
-    return 0;
+    return spriteId;
 }
 
 void UpdateSparkleFieldEffect(struct Sprite * sprite)

@@ -1508,10 +1508,10 @@
 #define FLAG_0x8F8                                                  (SYS_FLAGS + 0xF8)
 #define FLAG_0x8F9                                                  (SYS_FLAGS + 0xF9)
 #define FLAG_0x8FA                                                  (SYS_FLAGS + 0xFA)
-#define FLAG_0x8FB                                                  (SYS_FLAGS + 0xFB)
-#define FLAG_0x8FC                                                  (SYS_FLAGS + 0xFC)
-#define FLAG_0x8FD                                                  (SYS_FLAGS + 0xFD)
-#define FLAG_0x8FE                                                  (SYS_FLAGS + 0xFE)
+#define FLAG_SYS_DEXNAV_SEARCH                                                  (SYS_FLAGS + 0xFB) // formerlyFLAG_0x8FB
+#define FLAG_SHINY_CREATION                                                  (SYS_FLAGS + 0xFC) //  formerly FLAG_0x8FC
+#define FLAG_SYS_DETECTOR_MODE                                                  (SYS_FLAGS + 0xFD) //  formerly FLAG_0x8FD
+#define FLAG_SYS_DEXNAV_GET                                                  (SYS_FLAGS + 0xFE) // formerly FLAG_0x8FE
 #define FLAG_0x8FF                                                  (SYS_FLAGS + 0xFF)
 
 #define FLAGS_COUNT (FLAG_0x8FF + 1)

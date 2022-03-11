@@ -34,6 +34,7 @@
 #include "option_menu.h"
 #include "save_menu_util.h"
 #include "help_system.h"
+#include "dexnav.h"
 #include "constants/songs.h"
 #include "constants/field_weather.h"
 
@@ -41,6 +42,7 @@ enum StartMenuOption
 {
     STARTMENU_POKEDEX = 0,
     STARTMENU_POKEMON,
+    STARTMENU_DEXNAV,
     STARTMENU_BAG,
     STARTMENU_PLAYER,
     STARTMENU_SAVE,
@@ -111,10 +113,13 @@ static void task50_after_link_battle_save(u8 taskId);
 static void PrintSaveStats(void);
 static void CloseSaveStatsWindow(void);
 static void CloseStartMenu(void);
+static bool8 StartMenuDexNavCallback(void);
 
+static const u8 gStartMenuText_Dexnav[] = _("DEXNAV");
 static const struct MenuAction sStartMenuActionTable[] = {
     { gStartMenuText_Pokedex, {.u8_void = StartMenuPokedexCallback} },
     { gStartMenuText_Pokemon, {.u8_void = StartMenuPokemonCallback} },
+    { gStartMenuText_Dexnav, {.u8_void = StartMenuDexNavCallback} },
     { gStartMenuText_Bag, {.u8_void = StartMenuBagCallback} },
     { gStartMenuText_Player, {.u8_void = StartMenuPlayerCallback} },
     { gStartMenuText_Save, {.u8_void = StartMenuSaveCallback} },
@@ -134,9 +139,11 @@ static const struct WindowTemplate sSafariZoneStatsWindowTemplate = {
     .baseBlock = 0x008
 };
 
+static const u8 gStartMenuDesc_Dexnav[] = _("DEXNAV DESCRIPTION");
 static const u8 *const sStartMenuDescPointers[] = {
     gStartMenuDesc_Pokedex,
     gStartMenuDesc_Pokemon,
+    gStartMenuDesc_Dexnav,
     gStartMenuDesc_Bag,
     gStartMenuDesc_Player,
     gStartMenuDesc_Save,
@@ -208,6 +215,8 @@ static void SetUpStartMenu_NormalField(void)
         AppendToStartMenuItems(STARTMENU_POKEDEX);
     if (FlagGet(FLAG_SYS_POKEMON_GET) == TRUE)
         AppendToStartMenuItems(STARTMENU_POKEMON);
+    if (FlagGet(FLAG_SYS_DEXNAV_GET) == TRUE)
+        AppendToStartMenuItems(STARTMENU_DEXNAV);
     AppendToStartMenuItems(STARTMENU_BAG);
     AppendToStartMenuItems(STARTMENU_PLAYER);
     AppendToStartMenuItems(STARTMENU_SAVE);
@@ -1002,4 +1011,10 @@ void AppendToList(u8 *list, u8 *cursor, u8 newEntry)
 {
     list[*cursor] = newEntry;
     (*cursor)++;
+}
+
+static bool8 StartMenuDexNavCallback(void)
+{
+    CreateTask(Task_OpenDexNavFromStartMenu, 0);
+    return TRUE;
 }

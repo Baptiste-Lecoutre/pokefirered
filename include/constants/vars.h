@@ -217,8 +217,8 @@
 #define VAR_0x40A5                 0x40A5
 #define VAR_0x40A6                 0x40A6
 #define VAR_0x40A7                 0x40A7
-#define VAR_0x40A8                 0x40A8
-#define VAR_0x40A9                 0x40A9
+#define VAR_DEXNAV_SPECIES                 0x40A8 // formerly VAR_0x40A8
+#define VAR_DEXNAV_STEP_COUNTER                 0x40A9 // formerly VAR_0x40A9
 
 #define VAR_QLBAK_TRAINER_REMATCHES 0x40AA // array of 4
 #define VAR_QLBAK_MAP_LAYOUT        0x40AE

@@ -153,6 +153,8 @@
 
 #define NUM_TEXT_PRINTERS 32
 
+#define TEXT_SKIP_DRAW 0xFF
+
 #define TEXT_SPEED_INSTANT 0
 #define TEXT_SPEED_FF 0xFF
 
