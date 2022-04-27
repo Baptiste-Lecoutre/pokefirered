@@ -577,7 +577,7 @@ struct QuestLogObjectEvent
     /*0x02*/ u8 unused_02_5:3;
     /*0x03*/ u8 mapobj_unk_0B_0:4;
     /*0x03*/ u8 elevation:4;
-    /*0x04*/ u8 graphicsId;
+    /*0x04*/ u16 graphicsId;
     /*0x05*/ u8 animPattern;
     /*0x06*/ u8 trainerType;
     /*0x07*/ u8 localId;

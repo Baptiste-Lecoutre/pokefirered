@@ -447,7 +447,7 @@ static bool8 TrainerSeeFunc_EndJumpOutOfAsh(u8 taskId, struct Task *task, struct
 // FRLG exclusive: Scroll the camera up to reveal an offscreen above trainer
 static bool8 TrainerSeeFunc_OffscreenAboveTrainerCreateCameraObj(u8 taskId, struct Task *task, struct ObjectEvent *trainerObj)
 {
-    int specialObjectId;
+    u16 specialObjectId;
     task->tData5 = 0;
     specialObjectId = SpawnSpecialObjectEventParameterized(OBJ_EVENT_GFX_YOUNGSTER, 7, OBJ_EVENT_ID_CAMERA, gSaveBlock1Ptr->pos.x + 7, gSaveBlock1Ptr->pos.y + 7, 3);
     gObjectEvents[specialObjectId].invisible = TRUE;

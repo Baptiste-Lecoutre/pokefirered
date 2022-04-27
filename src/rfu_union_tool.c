@@ -17,7 +17,7 @@ static u8 StartUnionObjAnimTask(void);
 static u32 RfuUnionGroupMemberIsInvisible(u32 group, u32 member);
 static void UnionPartnerObjectSetFacing(s32 member, s32 group, u8 direction);
 
-static const u8 sUnionObjectEventGfxIds[][10] = {
+static const u16 sUnionObjectEventGfxIds[][10] = {
     [MALE]   = {
         OBJ_EVENT_GFX_COOLTRAINER_M,
         OBJ_EVENT_GFX_BLACKBELT,
@@ -109,7 +109,7 @@ static bool32 is_walking_or_running(void)
     }
 }
 
-static u8 GetUnionRoomPlayerGraphicsId(u32 gender, u32 id)
+static u16 GetUnionRoomPlayerGraphicsId(u32 gender, u32 id)
 {
     return sUnionObjectEventGfxIds[gender][id % 8];
 }
@@ -487,7 +487,7 @@ static u32 RfuUnionGroupMemberIsInvisible(u32 group, u32 member)
     return RfuUnionObjectIsInvisible(5 * group + member - 0x38);
 }
 
-static void SpawnGroupMember(u32 groupNo, u32 memberNo, u8 direction, struct GFtgtGname * gname)
+static void SpawnGroupMember(u32 groupNo, u32 memberNo, u16 direction, struct GFtgtGname * gname)
 {
     s32 x, y;
     s32 objId = 5 * groupNo + memberNo;
