@@ -72,6 +72,7 @@ static void MainMenu_EraseWindow(const struct WindowTemplate * template);
 
 static const u8 sString_Dummy[] = _("");
 static const u8 sString_Newline[] = _("\n");
+static u8 iconsIDs[PARTY_SIZE];
 
 static const struct WindowTemplate sWindowTemplate[] = {
     [MAIN_MENU_WINDOW_NEWGAME_ONLY] = {
@@ -559,6 +560,10 @@ static void Task_ReturnToTileScreen(u8 taskId)
 static void MoveWindowByMenuTypeAndCursorPos(u8 menuType, u8 cursorPos)
 {
     u16 win0vTop, win0vBot;
+    u8 i;
+    u16 monIconPal[16 * PARTY_SIZE];
+
+    CpuSet(gMonIconPalettes, monIconPal, 0x60);
     SetGpuReg(REG_OFFSET_WIN0H, WIN_RANGE(18, 222));
     switch (menuType)
     {
@@ -575,10 +580,17 @@ static void MoveWindowByMenuTypeAndCursorPos(u8 menuType, u8 cursorPos)
         case 0: // CONTINUE
             win0vTop = 0x00 << 8;
             win0vBot = 0x60;
+            LoadPalette(monIconPal, 256, sizeof(monIconPal));
+                    for (i = 0; i < gPlayerPartyCount; i++)
+                        gSprites[iconsIDs[i]].callback = SpriteCB_MonIcon;
             break;
         case 1: // NEW GAME
             win0vTop = 0x60 << 8;
             win0vBot = 0x80;
+            TintPalette_GrayScale(monIconPal, 96);
+                    LoadPalette(monIconPal, 256, sizeof(monIconPal));
+                    for (i = 0; i < gPlayerPartyCount; i++)
+                        gSprites[iconsIDs[i]].callback = SpriteCallbackDummy;
             break;
         case 2: // MYSTERY GIFT
             win0vTop = 0x80 << 8;
@@ -703,7 +715,7 @@ static void PrintBadgeCount(void)
 
 static void DrawPartyMonIcons(void)
 {
-	u8 i;
+	u8 i, id;
 	u16 species;
 	u32 personality;
 	
@@ -714,7 +726,9 @@ static void DrawPartyMonIcons(void)
 		species = GetMonData(&gPlayerParty[i], MON_DATA_SPECIES2);
 		personality = GetMonData(&gPlayerParty[i], MON_DATA_PERSONALITY);
 		
-		CreateMonIcon(species, SpriteCallbackDummy, sIconsPosition[i].x, sIconsPosition[i].y, 0, personality, TRUE);
+		id = CreateMonIcon(species, SpriteCallbackDummy, sIconsPosition[i].x, sIconsPosition[i].y, 0, personality, TRUE);
+        iconsIDs[i] = id;
+        gSprites[id].oam.priority = 0;
 	}
 }
 
